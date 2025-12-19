@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'config.freezed.dart';
@@ -19,5 +20,7 @@ abstract class InspectorConfig with _$InspectorConfig {
 
     /// Maximum body size to log (in bytes). Set to null for unlimited.
     @Default(1048576) int? maxBodySize, // 1MB default
+
+    @Default(kDebugMode) bool isActive,
   }) = _InspectorConfig;
 }

@@ -1,17 +1,19 @@
+import 'dart:async';
 import 'dart:collection';
 
 import 'package:http_inspector/src/data/network_log.dart';
-
-const _defaultMaxLog = 1000;
+import 'package:http_inspector/src/di/inspector.dart';
 
 class LogsRepository {
-  LogsRepository({this.maxLogs = _defaultMaxLog});
+  LogsRepository() {
+    _controller.add(_logs);
+  }
 
-  final int maxLogs;
   final ListQueue<NetworkLog> _logs = ListQueue(30);
+  final _controller = StreamController<ListQueue<NetworkLog>>();
 
   void addLog(NetworkLog log) {
-    if (_logs.length >= maxLogs) {
+    if (_logs.length >= InspectorDI.maxLog) {
       _logs.removeFirst();
     }
     _logs.add(log);
@@ -20,4 +22,8 @@ class LogsRepository {
   void clearLog() {
     _logs.clear();
   }
+
+  Stream<ListQueue<NetworkLog>> get logsStream => _controller.stream;
+
+  ListQueue<NetworkLog> get logs => _logs;
 }
