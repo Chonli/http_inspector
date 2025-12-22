@@ -216,8 +216,8 @@ return $default(_that.id,_that.url,_that.method,_that.timestamp,_that.requestHea
 /// @nodoc
 
 
-class _NetworkLog implements NetworkLog {
-  const _NetworkLog({required this.id, required this.url, required this.method, required this.timestamp, final  Map<String, dynamic>? requestHeaders, this.requestBody, this.statusCode, final  Map<String, dynamic>? responseHeaders, this.responseBody, this.durationMs, this.errorMessage, this.stackTrace}): _requestHeaders = requestHeaders,_responseHeaders = responseHeaders;
+class _NetworkLog extends NetworkLog {
+  const _NetworkLog({required this.id, required this.url, required this.method, required this.timestamp, final  Map<String, dynamic>? requestHeaders, this.requestBody, this.statusCode, final  Map<String, dynamic>? responseHeaders, this.responseBody, this.durationMs, this.errorMessage, this.stackTrace}): _requestHeaders = requestHeaders,_responseHeaders = responseHeaders,super._();
   
 
 @override final  String id;

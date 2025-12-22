@@ -22,4 +22,10 @@ abstract class NetworkLog with _$NetworkLog {
     String? errorMessage,
     StackTrace? stackTrace,
   }) = _NetworkLog;
+
+  const NetworkLog._();
+
+  int? get responseBodySize => responseBody?.length;
+
+  int? get requestBodySize => requestBody?.length;
 }

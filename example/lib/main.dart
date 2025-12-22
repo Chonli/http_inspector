@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:developer' show log;
 import 'dart:math' show Random;
@@ -9,7 +10,7 @@ import 'package:http_inspector/http_inspector.dart';
 void main() {
   InspectorManager.init(config: InspectorConfig());
 
-  runApp(MainApp(apiClient: ApiClient(Client())));
+  runApp(MainApp());
 }
 
 class ApiClient {
@@ -23,8 +24,11 @@ class ApiClient {
     ('GET', 'https://dummyjson.com/products/search?q=phone', {}),
     ('GET', 'https://dummyjson.com/users?limit=10', {}),
     ('GET', 'https://dummyjson.com/recipes/5', {}),
-    ('GET', 'https://dummyjson.com/products/5', {}),
-    ('GET', 'https://dummyjson.com/error', {}),
+    ('GET', 'https://dummyjson.com/http/404/Hello_Peter', {}),
+    ('GET', 'https://dummyjson.com/http/304/Move_Data', {}),
+    ('GET', 'https://dummyjson.com/http/501/Internal_error', {}),
+    ('DELETE', 'https://dummyjson.com/recipes/1', {}),
+    ('UPDATE', 'https://dummyjson.com/recipes/1', {'name': 'Tasty Pizza'}),
     ('POST', 'https://dummyjson.com/products/add', {'title': 'BMW Pencil'}),
     ('POST', 'https://dummyjson.com/recipes/add', {'name': 'Pizza napolitana'}),
   ];
@@ -45,34 +49,59 @@ class ApiClient {
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({super.key, required this.apiClient});
+  const MainApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(home: _HomeView(apiClient: ApiClient(Client())));
+  }
+}
+
+class _HomeView extends StatelessWidget {
+  const _HomeView({required this.apiClient});
 
   final ApiClient apiClient;
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Http Inspector Test'),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.bug_report),
-              tooltip: 'Inspector panel',
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute<void>(
-                  builder: (context) => const InspectorHttpPanelView(),
-                ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Http Inspector Test'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.bug_report),
+            tooltip: 'Inspector panel',
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute<void>(
+                builder: (context) => const InspectorHttpPanelView(),
               ),
             ),
-          ],
-        ),
-        body: Center(
-          child: OutlinedButton(
-            onPressed: () => apiClient.simulateApi(),
-            child: const Text('Simulate Download'),
           ),
+        ],
+      ),
+      body: Center(
+        child: Column(
+          spacing: 12,
+          mainAxisAlignment: .center,
+          crossAxisAlignment: .center,
+          children: [
+            OutlinedButton(
+              onPressed: () => apiClient.simulateApi(),
+              child: const Text('Simulate Download'),
+            ),
+            OutlinedButton(
+              onPressed: () {
+                var count = 20;
+                Timer.periodic(Duration(seconds: 20), (timer) async {
+                  await apiClient.simulateApi();
+                  count--;
+                  if (count < 0) timer.cancel();
+                });
+              },
+              child: const Text('Periodic Download'),
+            ),
+          ],
         ),
       ),
     );

@@ -3,6 +3,10 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:http_inspector/src/data/network_log.dart';
 import 'package:http_inspector/src/di/inspector.dart';
+import 'package:http_inspector/src/extensions/data.dart';
+import 'package:http_inspector/src/extensions/method.dart';
+import 'package:http_inspector/src/extensions/status_code.dart';
+import 'package:http_inspector/src/extensions/time.dart';
 
 class ListLogsView extends StatelessWidget {
   const ListLogsView({super.key});
@@ -27,6 +31,7 @@ class ListLogsView extends StatelessWidget {
         }
 
         return ListView.builder(
+          padding: const EdgeInsets.all(12),
           itemCount: logs.length,
           itemBuilder: (context, index) =>
               _NetworkLogListTile(log: logs.elementAt(index)),
@@ -44,28 +49,162 @@ class _NetworkLogListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final statusColor = log.statusCode != null
-        ? (log.statusCode! >= 200 && log.statusCode! < 300
-              ? Colors.green
-              : Colors.orange)
-        : Colors.grey;
+    final statusColor = log.statusCode.codeColor;
 
-    return ListTile(
-      title: Text(
-        '${log.method.toUpperCase()} ${log.url}',
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: statusColor.withValues(alpha: 0.3), width: 1),
+      ),
+      child: ListTile(
+        title: Row(
+          spacing: 4,
+          children: [
+            _MethodText(log.method),
+            Flexible(
+              child: Text(
+                log.url,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            _StatusText(log.statusCode),
+          ],
+        ),
+        subtitle: Padding(
+          padding: const EdgeInsets.only(top: 8),
+          child: Row(
+            spacing: 4,
+            mainAxisAlignment: .spaceBetween,
+            children: [
+              _InfoItem(
+                icon: Icons.access_time_rounded,
+                label: 'Time',
+                value: log.timestamp.formatDate,
+              ),
+              _InfoItem(
+                icon: Icons.data_usage,
+                label: 'Response size',
+                value: log.responseBodySize?.formatSize ?? 'N/A',
+              ),
+              _InfoItem(
+                icon: Icons.timer_outlined,
+                label: 'Duration',
+                value: log.durationMs.formatMsDate,
+              ),
+            ],
+          ),
+        ),
+        onTap: () {
+          // TODO: Implement navigation to detailed NetworkLog page
+        },
+      ),
+    );
+  }
+}
+
+class _MethodText extends StatelessWidget {
+  const _MethodText(this.method);
+
+  final String method;
+
+  @override
+  Widget build(BuildContext context) {
+    final color = method.methodColor;
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: .1),
+        borderRadius: BorderRadius.circular(4),
+        border: Border.all(color: color.withValues(alpha: 0.3)),
+      ),
+      child: Text(
+        method,
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
+        style: TextStyle(
+          color: color,
+          fontSize: 12,
+          fontWeight: FontWeight.bold,
+        ),
       ),
-      subtitle: Text(
-        log.timestamp.toIso8601String(),
-        style: Theme.of(context).textTheme.labelSmall,
+    );
+  }
+}
+
+class _StatusText extends StatelessWidget {
+  const _StatusText(this.status);
+
+  final int? status;
+
+  @override
+  Widget build(BuildContext context) {
+    final color = status.codeColor;
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: .1),
+        borderRadius: BorderRadius.circular(4),
+        border: Border.all(color: color.withValues(alpha: 0.3)),
       ),
-      trailing: log.statusCode != null
-          ? Text('${log.statusCode}', style: TextStyle(color: statusColor))
-          : null,
-      onTap: () {
-        // TODO: Implement navigation to detailed NetworkLog page
-      },
+      child: Text(
+        status.toText,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: TextStyle(
+          color: color,
+          fontSize: 12,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+  }
+}
+
+class _InfoItem extends StatelessWidget {
+  const _InfoItem({
+    required this.icon,
+    required this.label,
+    required this.value,
+  });
+
+  final IconData icon;
+  final String label;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      spacing: 4,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          spacing: 4,
+          children: [
+            Icon(icon, size: 12, color: Colors.grey),
+            Text(
+              label,
+              style: const TextStyle(
+                fontSize: 10,
+                color: Colors.grey,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
+
+        Text(
+          value,
+          style: const TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
+      ],
     );
   }
 }
