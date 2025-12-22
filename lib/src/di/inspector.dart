@@ -11,7 +11,7 @@ class InspectorDI {
   static InspectorDI get instance => _instance ??= InspectorDI._();
 
   final LogsRepository _logsRepository = LogsRepository();
-  InspectorConfig _config = InspectorConfig();
+  InspectorConfig _config = const InspectorConfig();
 
   static void init(InspectorConfig config) {
     instance._config = config;

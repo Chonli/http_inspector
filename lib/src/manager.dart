@@ -7,7 +7,7 @@ class InspectorManager {
   static InspectorManager? _instance;
   static InspectorManager get instance => _instance ??= InspectorManager._();
 
-  static void init(InspectorConfig config) {
+  static void init({InspectorConfig config = const InspectorConfig()}) {
     InspectorDI.init(config);
   }
 }
