@@ -43,7 +43,7 @@ class ClientInspector extends BaseClient {
       final log = NetworkLog(
         id: '${request.hashCode}',
         url: request.url.toString(),
-        method: request.method,
+        method: request.method.toUpperCase(),
         timestamp: start,
         requestHeaders: requestHeaders,
         requestBody: requestBody,
@@ -71,7 +71,7 @@ class ClientInspector extends BaseClient {
       final log = NetworkLog(
         id: '${request.hashCode}',
         url: request.url.toString(),
-        method: request.method,
+        method: request.method.toUpperCase(),
         timestamp: start,
         requestHeaders: request.headers,
         requestBody: request is Request ? request.body : null,

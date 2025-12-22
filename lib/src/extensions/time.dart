@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 extension DateTimeExt on DateTime {
@@ -9,4 +10,11 @@ extension IntTimeExt on int? {
     if (this == null) return '--';
     return '${this}ms';
   }
+
+  Color get durationColor => switch (this) {
+    null => Colors.black,
+    <= 500 => Colors.green,
+    <= 2000 => Colors.orange,
+    _ => Colors.red,
+  };
 }

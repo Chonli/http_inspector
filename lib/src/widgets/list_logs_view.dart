@@ -7,6 +7,7 @@ import 'package:http_inspector/src/extensions/data.dart';
 import 'package:http_inspector/src/extensions/method.dart';
 import 'package:http_inspector/src/extensions/status_code.dart';
 import 'package:http_inspector/src/extensions/time.dart';
+import 'package:http_inspector/src/widgets/log_detail_view.dart';
 
 class ListLogsView extends StatelessWidget {
   const ListLogsView({super.key});
@@ -50,13 +51,14 @@ class _NetworkLogListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final statusColor = log.statusCode.codeColor;
+    final sufaceColor = log.statusCode.surfaceColor;
 
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: sufaceColor,
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: statusColor.withValues(alpha: 0.3), width: 1),
+        border: Border.all(color: statusColor.withAlpha(30), width: 2),
       ),
       child: ListTile(
         title: Row(
@@ -66,8 +68,9 @@ class _NetworkLogListTile extends StatelessWidget {
             Flexible(
               child: Text(
                 log.url,
-                maxLines: 1,
+                maxLines: 2,
                 overflow: TextOverflow.ellipsis,
+                style: const TextStyle(fontSize: 12),
               ),
             ),
             _StatusText(log.statusCode),
@@ -93,13 +96,17 @@ class _NetworkLogListTile extends StatelessWidget {
                 icon: Icons.timer_outlined,
                 label: 'Duration',
                 value: log.durationMs.formatMsDate,
+                colorText: log.durationMs.durationColor,
               ),
             ],
           ),
         ),
-        onTap: () {
-          // TODO: Implement navigation to detailed NetworkLog page
-        },
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute<void>(
+            builder: (context) => NetworkLogDetailView(log: log),
+          ),
+        ),
       ),
     );
   }
@@ -113,6 +120,7 @@ class _MethodText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final color = method.methodColor;
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
@@ -169,11 +177,13 @@ class _InfoItem extends StatelessWidget {
     required this.icon,
     required this.label,
     required this.value,
+    this.colorText = Colors.black,
   });
 
   final IconData icon;
   final String label;
   final String value;
+  final Color colorText;
 
   @override
   Widget build(BuildContext context) {
@@ -198,10 +208,10 @@ class _InfoItem extends StatelessWidget {
 
         Text(
           value,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.bold,
-            color: Colors.black,
+            color: colorText,
           ),
         ),
       ],

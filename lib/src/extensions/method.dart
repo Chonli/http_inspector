@@ -5,7 +5,8 @@ extension HttpMethodExt on String {
     'GET' => Colors.blue,
     'POST' => Colors.green,
     'UPDATE' => Colors.deepPurple,
-    'DELETE' => Colors.orange,
+    'DELETE' => Colors.red,
+    'PATCH' => Colors.orange,
     _ => Colors.grey,
   };
 }
