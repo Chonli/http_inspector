@@ -1,3 +1,3 @@
 # example
 
-A new Flutter project.
+Example to http_inspector package

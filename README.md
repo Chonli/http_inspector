@@ -1,39 +1,110 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# http_inspector
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+`http_inspector` is a Flutter package that provides easy logging and inspection of network activity for applications using the [http](https://pub.dev/packages/http) package. It helps developers debug and monitor HTTP requests/responses directly from their apps, providing an in-app inspector panel for real-time network analysis.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- **Automatic logging** of all data passed through HTTP requests using the `http` package
+- **In-app inspector panel**: View detailed request, response, error, and header info directly inside your app
+- **Easy integration**: Simply wrap your `http.Client` instance with an inspector
+- **Supports all standard HTTP methods**
+- **No special setup required**: Works with your existing codebase
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+1. **Add dependency:**  
+   Add `http_inspector` and `http` to your `pubspec.yaml`:
 
-## Usage
+   ```yaml
+   dependencies:
+     flutter:
+       sdk: flutter
+     http: any
+     http_inspector: any
+   ```
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+2. **Basic usage:**  
+   You only need to initialize the inspector once in your main function:
+
+   ```dart
+   import 'package:http_inspector/http_inspector.dart';
+
+   void main() {
+     InspectorManager.init(config: InspectorConfig());
+     runApp(const MyApp());
+   }
+   ```
+
+   Then, wrap your HTTP client with `ClientInspector`:
+
+   ```dart
+   import 'package:http/http.dart';
+
+   final client = ClientInspector(innerClient: Client());
+   ```
+
+## Usage Example
+
+Here is a sample use case from `example/lib/main.dart`:
 
 ```dart
-const like = 'sample';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:http_inspector/http_inspector.dart';
+
+void main() {
+  InspectorManager.init(config: InspectorConfig());
+  runApp(MainApp());
+}
+
+class ApiClient {
+  ApiClient(Client client) : innerClient = ClientInspector(innerClient: client);
+
+  final Client innerClient;
+
+  Future<void> simulateApi() async {
+    final response = await innerClient.get(Uri.parse('https://exemple.com/todo'));
+    // Your logic here
+  }
+}
+
+class MainApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+            title: Text('Http Inspector Test'),
+            actions: [
+                IconButton(
+                    icon: const Icon(Icons.bug_report),
+                    tooltip: 'Inspector panel',
+                    onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute<void>(
+                            builder: (context) => const InspectorHttpPanelView(),
+                        ),
+                    ),
+                ),
+            ],
+        ),
+        body: Center(
+            child: Text('Open the inspector panel to see the network logs'),
+        ),
+      ),
+    );
+  }
+}
 ```
+
+You can open the inspector panel in your app (see `main.dart`) via a button that pushes `InspectorHttpPanelView()`.
 
 ## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+- **More info**: [GitHub repository/link if available]
+- **Bug reports and feature requests**: File issues on the [issue tracker/link]
+- **Contribution**: Contributions are welcome! Please submit pull requests or open an issue for suggestions.
+
+---
+
+This package is great for anyone who needs to monitor, debug, or understand their app's network traffic without setting up external logging bundles or platform-specific tools.
