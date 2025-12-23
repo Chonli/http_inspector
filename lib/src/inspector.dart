@@ -40,6 +40,8 @@ class ClientInspector extends BaseClient {
         responseBody = responseBytes;
       }
 
+      // TODO add error message when statusCode >= 400
+
       final log = NetworkLog(
         id: '${request.hashCode}',
         url: request.url.toString(),
