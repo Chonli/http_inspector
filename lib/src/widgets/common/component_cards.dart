@@ -58,6 +58,7 @@ class InfoCard extends StatelessWidget {
     super.key,
     required this.title,
     required this.children,
+    this.backgroundColor = const Color(0xFFF0F0F0),
     this.titleColor = Colors.grey,
     this.icon,
   });
@@ -65,6 +66,7 @@ class InfoCard extends StatelessWidget {
   final String title;
   final List<Widget> children;
   final Color? titleColor;
+  final Color backgroundColor;
   final IconData? icon;
 
   @Preview(name: 'InfoCard', group: 'Components')
@@ -81,6 +83,7 @@ class InfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BackgroundCard(
+      backgroundColor: backgroundColor,
       child: Column(
         spacing: 8,
         crossAxisAlignment: .start,
