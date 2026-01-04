@@ -51,11 +51,6 @@ extension NetworkLogListExt on ListQueue<NetworkLog> {
     final queryLowerCase = query.toLowerCase().trim();
 
     Iterable<NetworkLog> filteredLogs = this;
-    if (queryLowerCase.isNotEmpty) {
-      filteredLogs = filteredLogs.where(
-        (log) => filter.methods.contains(log.method),
-      );
-    }
 
     // Filtrage StatusGroup
     if (filter.statusGroup.isNotEmpty &&

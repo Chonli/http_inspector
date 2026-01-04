@@ -12,7 +12,6 @@ extension HttpMethodStringExt on String {
     'OPTIONS' => .options,
     'TRACE' => .trace,
     'CONNECT' => .connect,
-
     _ => .unknown,
   };
 }
