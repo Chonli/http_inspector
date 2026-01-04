@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$NetworkLog {
 
- String get id; String get url; String get method; DateTime get timestamp; Map<String, dynamic>? get requestHeaders; dynamic get requestBody; int? get statusCode; Map<String, dynamic>? get responseHeaders; dynamic get responseBody; int? get durationMs; String? get errorMessage; StackTrace? get stackTrace;
+ String get id; String get url; HttpMethod get method; DateTime get timestamp; Map<String, dynamic>? get requestHeaders; dynamic get requestBody; int? get statusCode; Map<String, dynamic>? get responseHeaders; dynamic get responseBody; int? get durationMs; String? get errorMessage; StackTrace? get stackTrace;
 /// Create a copy of NetworkLog
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -45,7 +45,7 @@ abstract mixin class $NetworkLogCopyWith<$Res>  {
   factory $NetworkLogCopyWith(NetworkLog value, $Res Function(NetworkLog) _then) = _$NetworkLogCopyWithImpl;
 @useResult
 $Res call({
- String id, String url, String method, DateTime timestamp, Map<String, dynamic>? requestHeaders, dynamic requestBody, int? statusCode, Map<String, dynamic>? responseHeaders, dynamic responseBody, int? durationMs, String? errorMessage, StackTrace? stackTrace
+ String id, String url, HttpMethod method, DateTime timestamp, Map<String, dynamic>? requestHeaders, dynamic requestBody, int? statusCode, Map<String, dynamic>? responseHeaders, dynamic responseBody, int? durationMs, String? errorMessage, StackTrace? stackTrace
 });
 
 
@@ -67,7 +67,7 @@ class _$NetworkLogCopyWithImpl<$Res>
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
 as String,method: null == method ? _self.method : method // ignore: cast_nullable_to_non_nullable
-as String,timestamp: null == timestamp ? _self.timestamp : timestamp // ignore: cast_nullable_to_non_nullable
+as HttpMethod,timestamp: null == timestamp ? _self.timestamp : timestamp // ignore: cast_nullable_to_non_nullable
 as DateTime,requestHeaders: freezed == requestHeaders ? _self.requestHeaders : requestHeaders // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>?,requestBody: freezed == requestBody ? _self.requestBody : requestBody // ignore: cast_nullable_to_non_nullable
 as dynamic,statusCode: freezed == statusCode ? _self.statusCode : statusCode // ignore: cast_nullable_to_non_nullable
@@ -161,7 +161,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String url,  String method,  DateTime timestamp,  Map<String, dynamic>? requestHeaders,  dynamic requestBody,  int? statusCode,  Map<String, dynamic>? responseHeaders,  dynamic responseBody,  int? durationMs,  String? errorMessage,  StackTrace? stackTrace)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String url,  HttpMethod method,  DateTime timestamp,  Map<String, dynamic>? requestHeaders,  dynamic requestBody,  int? statusCode,  Map<String, dynamic>? responseHeaders,  dynamic responseBody,  int? durationMs,  String? errorMessage,  StackTrace? stackTrace)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _NetworkLog() when $default != null:
 return $default(_that.id,_that.url,_that.method,_that.timestamp,_that.requestHeaders,_that.requestBody,_that.statusCode,_that.responseHeaders,_that.responseBody,_that.durationMs,_that.errorMessage,_that.stackTrace);case _:
@@ -182,7 +182,7 @@ return $default(_that.id,_that.url,_that.method,_that.timestamp,_that.requestHea
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String url,  String method,  DateTime timestamp,  Map<String, dynamic>? requestHeaders,  dynamic requestBody,  int? statusCode,  Map<String, dynamic>? responseHeaders,  dynamic responseBody,  int? durationMs,  String? errorMessage,  StackTrace? stackTrace)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String url,  HttpMethod method,  DateTime timestamp,  Map<String, dynamic>? requestHeaders,  dynamic requestBody,  int? statusCode,  Map<String, dynamic>? responseHeaders,  dynamic responseBody,  int? durationMs,  String? errorMessage,  StackTrace? stackTrace)  $default,) {final _that = this;
 switch (_that) {
 case _NetworkLog():
 return $default(_that.id,_that.url,_that.method,_that.timestamp,_that.requestHeaders,_that.requestBody,_that.statusCode,_that.responseHeaders,_that.responseBody,_that.durationMs,_that.errorMessage,_that.stackTrace);case _:
@@ -202,7 +202,7 @@ return $default(_that.id,_that.url,_that.method,_that.timestamp,_that.requestHea
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String url,  String method,  DateTime timestamp,  Map<String, dynamic>? requestHeaders,  dynamic requestBody,  int? statusCode,  Map<String, dynamic>? responseHeaders,  dynamic responseBody,  int? durationMs,  String? errorMessage,  StackTrace? stackTrace)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String url,  HttpMethod method,  DateTime timestamp,  Map<String, dynamic>? requestHeaders,  dynamic requestBody,  int? statusCode,  Map<String, dynamic>? responseHeaders,  dynamic responseBody,  int? durationMs,  String? errorMessage,  StackTrace? stackTrace)?  $default,) {final _that = this;
 switch (_that) {
 case _NetworkLog() when $default != null:
 return $default(_that.id,_that.url,_that.method,_that.timestamp,_that.requestHeaders,_that.requestBody,_that.statusCode,_that.responseHeaders,_that.responseBody,_that.durationMs,_that.errorMessage,_that.stackTrace);case _:
@@ -222,7 +222,7 @@ class _NetworkLog extends NetworkLog {
 
 @override final  String id;
 @override final  String url;
-@override final  String method;
+@override final  HttpMethod method;
 @override final  DateTime timestamp;
  final  Map<String, dynamic>? _requestHeaders;
 @override Map<String, dynamic>? get requestHeaders {
@@ -279,7 +279,7 @@ abstract mixin class _$NetworkLogCopyWith<$Res> implements $NetworkLogCopyWith<$
   factory _$NetworkLogCopyWith(_NetworkLog value, $Res Function(_NetworkLog) _then) = __$NetworkLogCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String url, String method, DateTime timestamp, Map<String, dynamic>? requestHeaders, dynamic requestBody, int? statusCode, Map<String, dynamic>? responseHeaders, dynamic responseBody, int? durationMs, String? errorMessage, StackTrace? stackTrace
+ String id, String url, HttpMethod method, DateTime timestamp, Map<String, dynamic>? requestHeaders, dynamic requestBody, int? statusCode, Map<String, dynamic>? responseHeaders, dynamic responseBody, int? durationMs, String? errorMessage, StackTrace? stackTrace
 });
 
 
@@ -301,7 +301,7 @@ class __$NetworkLogCopyWithImpl<$Res>
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
 as String,method: null == method ? _self.method : method // ignore: cast_nullable_to_non_nullable
-as String,timestamp: null == timestamp ? _self.timestamp : timestamp // ignore: cast_nullable_to_non_nullable
+as HttpMethod,timestamp: null == timestamp ? _self.timestamp : timestamp // ignore: cast_nullable_to_non_nullable
 as DateTime,requestHeaders: freezed == requestHeaders ? _self._requestHeaders : requestHeaders // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>?,requestBody: freezed == requestBody ? _self.requestBody : requestBody // ignore: cast_nullable_to_non_nullable
 as dynamic,statusCode: freezed == statusCode ? _self.statusCode : statusCode // ignore: cast_nullable_to_non_nullable

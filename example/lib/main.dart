@@ -8,9 +8,9 @@ import 'package:http/http.dart';
 import 'package:http_inspector/http_inspector.dart';
 
 void main() {
-  InspectorManager.init(config: InspectorConfig());
+  InspectorManager.init(config: const InspectorConfig());
 
-  runApp(MainApp());
+  runApp(const MainApp());
 }
 
 class ApiClient {
@@ -28,7 +28,8 @@ class ApiClient {
     ('GET', 'https://dummyjson.com/http/304/Move_Data', {}),
     ('GET', 'https://dummyjson.com/http/501/Internal_error', {}),
     ('DELETE', 'https://dummyjson.com/recipes/1', {}),
-    ('UPDATE', 'https://dummyjson.com/recipes/1', {'name': 'Tasty Pizza'}),
+    ('DELETE', 'https://dummyjson.com/products/1', {}),
+    ('PUT', 'https://dummyjson.com/recipes/1', {'name': 'Tasty Pizza'}),
     ('POST', 'https://dummyjson.com/products/add', {'title': 'BMW Pencil'}),
     ('POST', 'https://dummyjson.com/recipes/add', {'name': 'Pizza napolitana'}),
   ];
@@ -38,13 +39,18 @@ class ApiClient {
 
     final ret = switch (data.$1) {
       'GET' => await innerClient.get(Uri.parse(data.$2)),
+      'PUT' => await innerClient.put(
+        Uri.parse(data.$2),
+        body: jsonEncode(data.$3),
+      ),
+      'DELETE' => await innerClient.delete(Uri.parse(data.$2)),
       _ => await innerClient.post(
         Uri.parse(data.$2),
         body: jsonEncode(data.$3),
       ),
     };
 
-    log('GET ${data.$2} -> return code: ${ret.statusCode}');
+    log('${data.$1} ${data.$2} -> return code: ${ret.statusCode}');
   }
 }
 
@@ -66,7 +72,7 @@ class _HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Http Inspector Test'),
+        title: const Text('Http Inspector Test'),
         actions: [
           IconButton(
             icon: const Icon(Icons.bug_report),
@@ -93,7 +99,7 @@ class _HomeView extends StatelessWidget {
             OutlinedButton(
               onPressed: () {
                 var count = 20;
-                Timer.periodic(Duration(seconds: 20), (timer) async {
+                Timer.periodic(const Duration(seconds: 20), (timer) async {
                   await apiClient.simulateApi();
                   count--;
                   if (count < 0) timer.cancel();

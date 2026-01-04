@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart';
 import 'package:http_inspector/src/data/network_log.dart';
 import 'package:http_inspector/src/di/inspector.dart';
+import 'package:http_inspector/src/extensions/method.dart';
 
 class ClientInspector extends BaseClient {
   ClientInspector({required this.innerClient});
@@ -45,7 +46,7 @@ class ClientInspector extends BaseClient {
       final log = NetworkLog(
         id: '${request.hashCode}',
         url: request.url.toString(),
-        method: request.method.toUpperCase(),
+        method: request.method.toEnum,
         timestamp: start,
         requestHeaders: requestHeaders,
         requestBody: requestBody,
@@ -73,7 +74,7 @@ class ClientInspector extends BaseClient {
       final log = NetworkLog(
         id: '${request.hashCode}',
         url: request.url.toString(),
-        method: request.method.toUpperCase(),
+        method: request.method.toEnum,
         timestamp: start,
         requestHeaders: request.headers,
         requestBody: request is Request ? request.body : null,

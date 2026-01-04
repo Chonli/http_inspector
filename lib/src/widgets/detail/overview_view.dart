@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http_inspector/src/data/network_log.dart';
 import 'package:http_inspector/src/extensions/data.dart';
+import 'package:http_inspector/src/extensions/method.dart';
 import 'package:http_inspector/src/extensions/time.dart';
 import 'package:http_inspector/src/widgets/common/component_cards.dart';
 import 'package:intl/intl.dart';
@@ -55,7 +56,7 @@ class OverviewSection extends StatelessWidget {
         InfoCard(
           title: 'Request Details',
           children: [
-            InfoRow(label: 'Method', value: log.method),
+            InfoRow(label: 'Method', value: log.method.toText),
             if (log.statusCode != null)
               InfoRow(label: 'Status Code', value: log.statusCode.toString()),
             InfoRow(

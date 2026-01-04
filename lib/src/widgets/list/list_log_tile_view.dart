@@ -18,7 +18,7 @@ class NetworkLogListTile extends StatelessWidget {
       log: NetworkLog(
         id: 'id',
         url: 'https://wwww.exemple.com/produit',
-        method: 'GET',
+        method: HttpMethod.get,
         timestamp: DateTime(2025, 12, 22, 12),
         durationMs: 204,
         responseBody: 'responseBody',
@@ -36,8 +36,8 @@ class NetworkLogListTile extends StatelessWidget {
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: sufaceColor,
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: statusColor.withAlpha(30), width: 2),
+          borderRadius: .circular(8),
+          border: .all(color: statusColor.withAlpha(30), width: 2),
         ),
         child: ListTile(
           title: Row(
@@ -96,16 +96,16 @@ class NetworkLogListTile extends StatelessWidget {
 class _MethodText extends StatelessWidget {
   const _MethodText(this.method);
 
-  final String method;
+  final HttpMethod method;
 
   @override
   Widget build(BuildContext context) {
-    final color = method.methodColor;
+    final color = method.toColor;
 
     return _BackgroundCard(
       color: color,
       child: Text(
-        method,
+        method.toText,
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
         style: TextStyle(
