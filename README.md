@@ -1,6 +1,10 @@
 # http_inspector
 
+[![License: MIT](https://img.shields.io/badge/license-MIT-purple.svg)](https://opensource.org/licenses/MIT)
+---
+
 `http_inspector` is a Flutter package that provides easy logging and inspection of network activity for applications using the [http](https://pub.dev/packages/http) package. It helps developers debug and monitor HTTP requests/responses directly from their apps, providing an in-app inspector panel for real-time network analysis.
+This package is inspired by [droido](https://github.com/kapdroid/droido) use to inspect requests but using dio package.
 
 ## Features
 
