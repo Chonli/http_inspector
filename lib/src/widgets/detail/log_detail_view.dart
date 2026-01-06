@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:http_inspector/src/data/network_log.dart';
-import 'package:http_inspector/src/widgets/detail/overview_view.dart';
-import 'package:http_inspector/src/widgets/detail/request_view.dart';
-import 'package:http_inspector/src/widgets/detail/response_view.dart';
+import 'package:http_client_inspector/src/data/network_log.dart';
+import 'package:http_client_inspector/src/widgets/detail/overview_view.dart';
+import 'package:http_client_inspector/src/widgets/detail/request_view.dart';
+import 'package:http_client_inspector/src/widgets/detail/response_view.dart';
 
 class NetworkLogDetailView extends StatelessWidget {
   final NetworkLog log;

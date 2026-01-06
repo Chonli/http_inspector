@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:http_inspector/src/inspector.dart';
+import 'package:http_client_inspector/src/inspector.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockClient extends Mock implements Client {}

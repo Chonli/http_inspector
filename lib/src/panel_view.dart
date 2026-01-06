@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:http_inspector/src/widgets/list/list_logs_view.dart';
+import 'package:http_client_inspector/src/widgets/list/list_logs_view.dart';
 
 /// A page widget that displays a list of NetworkLog entries
 class InspectorHttpPanelView extends StatelessWidget {

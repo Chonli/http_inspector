@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:http_inspector/src/core/data_utils.dart';
-import 'package:http_inspector/src/data/network_log.dart';
-import 'package:http_inspector/src/widgets/common/component_cards.dart';
+import 'package:http_client_inspector/src/core/data_utils.dart';
+import 'package:http_client_inspector/src/data/network_log.dart';
+import 'package:http_client_inspector/src/widgets/common/component_cards.dart';
 
 class ResponseSection extends StatelessWidget {
   const ResponseSection({super.key, required this.log});

@@ -1,6 +1,7 @@
-name: http_inspector
-description: 'A package to inspect http requests and responses in Flutter directly in your App.'
+name: http_client_inspector
+description: 'A package to inspect http client package requests and responses in Flutter directly in your App.'
 version: 0.0.1
+repository: 'https://github.com/Chonli/http_inspector'
 
 environment:
   sdk: ^3.10.0

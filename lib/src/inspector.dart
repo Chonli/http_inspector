@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
-import 'package:http_inspector/src/data/network_log.dart';
-import 'package:http_inspector/src/di/inspector.dart';
-import 'package:http_inspector/src/extensions/method.dart';
+import 'package:http_client_inspector/src/data/network_log.dart';
+import 'package:http_client_inspector/src/di/inspector.dart';
+import 'package:http_client_inspector/src/extensions/method.dart';
 
 class ClientInspector extends BaseClient {
   ClientInspector({required this.innerClient});

@@ -1,10 +1,9 @@
-# http_inspector
+# http_client_inspector
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-purple.svg)](https://opensource.org/licenses/MIT)
 ---
 
-`http_inspector` is a Flutter package that provides easy logging and inspection of network activity for applications using the [http](https://pub.dev/packages/http) package. It helps developers debug and monitor HTTP requests/responses directly from their apps, providing an in-app inspector panel for real-time network analysis.
-This package is inspired by [droido](https://github.com/kapdroid/droido) use to inspect requests but using dio package.
+`http_client_inspector` is a Flutter package that provides easy logging and inspection of network activity for applications using the [http](https://pub.dev/packages/http) package. It helps developers debug and monitor HTTP requests/responses directly from their apps, providing an in-app inspector panel for real-time network analysis.
 
 ## Features
 
@@ -17,21 +16,21 @@ This package is inspired by [droido](https://github.com/kapdroid/droido) use to 
 ## Getting started
 
 1. **Add dependency:**  
-   Add `http_inspector` and `http` to your `pubspec.yaml`:
+   Add `http_client_inspector` and `http` to your `pubspec.yaml`:
 
    ```yaml
    dependencies:
      flutter:
        sdk: flutter
      http: any
-     http_inspector: any
+     http_client_inspector: any
    ```
 
 2. **Basic usage:**  
    You only need to initialize the inspector once in your main function:
 
    ```dart
-   import 'package:http_inspector/http_inspector.dart';
+   import 'package:http_client_inspector/http_client_inspector.dart';
 
    void main() {
      InspectorManager.init(config: InspectorConfig());
@@ -54,7 +53,7 @@ Here is a sample use case from `example/lib/main.dart`:
 ```dart
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:http_inspector/http_inspector.dart';
+import 'package:http_client_inspector/http_client_inspector.dart';
 
 void main() {
   InspectorManager.init(config: InspectorConfig());
@@ -103,12 +102,21 @@ class MainApp extends StatelessWidget {
 
 You can open the inspector panel in your app (see `main.dart`) via a button that pushes `InspectorHttpPanelView()`.
 
+## 💡 Inspired By
+[droido](https://github.com/kapdroid/droido) similar package but use dio instead of http client.
+
+## RoadMap
+- Add a way to save share logs (in different format)
+- Create curl request corresponding to a log
+
 ## Additional information
 
-- **More info**: [GitHub repository/link if available]
-- **Bug reports and feature requests**: File issues on the [issue tracker/link]
+- **License**: MIT License - see the [LICENSE](LICENSE) file for details.
+- **More info**: [GitHub repository](https://github.com/Chonli/http_inspector)
+- **Bug reports and feature requests**: [issue tracker](https://github.com/Chonli/http_inspector/issues)
 - **Contribution**: Contributions are welcome! Please submit pull requests or open an issue for suggestions.
+
 
 ---
 
-This package is great for anyone who needs to monitor, debug, or understand their app's network traffic without setting up external logging bundles or platform-specific tools.
+Made with ❤️ for the Flutter community.

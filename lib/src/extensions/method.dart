@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:http_inspector/src/data/network_log.dart';
+import 'package:http_client_inspector/src/data/network_log.dart';
 
 extension HttpMethodStringExt on String {
   HttpMethod get toEnum => switch (toUpperCase()) {

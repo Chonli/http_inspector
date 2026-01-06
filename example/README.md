@@ -1,3 +1,3 @@
 # example
 
-Example to http_inspector package
+Example to http_client_inspector package

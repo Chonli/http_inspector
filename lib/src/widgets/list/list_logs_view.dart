@@ -1,11 +1,11 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
-import 'package:http_inspector/src/data/logs_filter.dart';
-import 'package:http_inspector/src/data/network_log.dart';
-import 'package:http_inspector/src/di/inspector.dart';
-import 'package:http_inspector/src/widgets/list/filters_sheet.dart';
-import 'package:http_inspector/src/widgets/list/list_log_tile_view.dart';
+import 'package:http_client_inspector/src/data/logs_filter.dart';
+import 'package:http_client_inspector/src/data/network_log.dart';
+import 'package:http_client_inspector/src/di/inspector.dart';
+import 'package:http_client_inspector/src/widgets/list/filters_sheet.dart';
+import 'package:http_client_inspector/src/widgets/list/list_log_tile_view.dart';
 
 class ListLogsView extends StatelessWidget {
   const ListLogsView({super.key});
@@ -45,7 +45,9 @@ class ListLogsView extends StatelessWidget {
                   onPressed: () async {
                     final newFilter = await showModalBottomSheet<LogsFilter>(
                       context: context,
-
+                      isScrollControlled: true,
+                      enableDrag: true,
+                      useSafeArea: true,
                       builder: (context) => LogsFilterSheet(initial: filter),
                     );
 

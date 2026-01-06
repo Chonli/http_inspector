@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:http_inspector/src/data/network_log.dart';
-import 'package:http_inspector/src/extensions/data.dart';
-import 'package:http_inspector/src/extensions/method.dart';
-import 'package:http_inspector/src/extensions/status_code.dart';
-import 'package:http_inspector/src/extensions/time.dart';
-import 'package:http_inspector/src/widgets/common/component_cards.dart';
+import 'package:http_client_inspector/src/data/network_log.dart';
+import 'package:http_client_inspector/src/extensions/data.dart';
+import 'package:http_client_inspector/src/extensions/method.dart';
+import 'package:http_client_inspector/src/extensions/status_code.dart';
+import 'package:http_client_inspector/src/extensions/time.dart';
+import 'package:http_client_inspector/src/widgets/common/component_cards.dart';
 import 'package:intl/intl.dart';
 
 class OverviewSection extends StatelessWidget {
@@ -15,13 +15,13 @@ class OverviewSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.all(8),
       children: [
         // Metrics Row
         Row(
           mainAxisAlignment: .spaceBetween,
           mainAxisSize: .max,
-          spacing: 12,
+          spacing: 8,
           children: [
             Expanded(
               child: InfoCard(

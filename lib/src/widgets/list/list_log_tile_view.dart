@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widget_previews.dart';
-import 'package:http_inspector/src/data/network_log.dart';
-import 'package:http_inspector/src/extensions/data.dart';
-import 'package:http_inspector/src/extensions/method.dart';
-import 'package:http_inspector/src/extensions/status_code.dart';
-import 'package:http_inspector/src/extensions/time.dart';
-import 'package:http_inspector/src/widgets/detail/log_detail_view.dart';
+import 'package:http_client_inspector/src/data/network_log.dart';
+import 'package:http_client_inspector/src/extensions/data.dart';
+import 'package:http_client_inspector/src/extensions/method.dart';
+import 'package:http_client_inspector/src/extensions/status_code.dart';
+import 'package:http_client_inspector/src/extensions/time.dart';
+import 'package:http_client_inspector/src/widgets/detail/log_detail_view.dart';
 
 class NetworkLogListTile extends StatelessWidget {
   final NetworkLog log;

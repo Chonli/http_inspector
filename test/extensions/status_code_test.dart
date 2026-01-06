@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http_inspector/src/extensions/status_code.dart';
+import 'package:http_client_inspector/src/extensions/status_code.dart';
 
 void main() {
   group('StatusCodeExt.codeColor', () {

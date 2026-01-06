@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http_inspector/src/data/network_log.dart';
-import 'package:http_inspector/src/extensions/method.dart';
+import 'package:http_client_inspector/src/data/network_log.dart';
+import 'package:http_client_inspector/src/extensions/method.dart';
 
 void main() {
   group('HttpMethodStringExt.toEnum', () {

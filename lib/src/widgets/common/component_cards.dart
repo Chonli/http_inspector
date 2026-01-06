@@ -92,7 +92,7 @@ class InfoCard extends StatelessWidget {
             children: [
               if (icon != null) ...[
                 Icon(icon, size: 12, color: titleColor),
-                const SizedBox(width: 4),
+                const SizedBox(width: 2),
               ],
               Text(title.toUpperCase()),
             ],

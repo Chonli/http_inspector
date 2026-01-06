@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:http_inspector/src/data/logs_filter.dart';
-import 'package:http_inspector/src/data/network_log.dart';
-import 'package:http_inspector/src/extensions/method.dart';
+import 'package:http_client_inspector/src/data/logs_filter.dart';
+import 'package:http_client_inspector/src/data/network_log.dart';
+import 'package:http_client_inspector/src/extensions/method.dart';
 
 const _allText = 'ALL';
 
@@ -36,9 +36,7 @@ class LogsFilterSheetState extends State<LogsFilterSheet> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: ListView(
         children: [
           const Center(
             child: Text('Filters', style: TextStyle(fontWeight: .bold)),

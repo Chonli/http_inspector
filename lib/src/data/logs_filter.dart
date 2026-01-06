@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:http_inspector/src/data/network_log.dart';
+import 'package:http_client_inspector/src/data/network_log.dart';
 
 part 'logs_filter.freezed.dart';
 

@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:collection';
 
-import 'package:http_inspector/src/data/network_log.dart';
-import 'package:http_inspector/src/di/inspector.dart';
+import 'package:http_client_inspector/src/data/network_log.dart';
+import 'package:http_client_inspector/src/di/inspector.dart';
 
 class LogsRepository {
   LogsRepository() {

@@ -1,7 +1,7 @@
 // test/extensions/time_test.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http_inspector/src/extensions/time.dart';
+import 'package:http_client_inspector/src/extensions/time.dart';
 
 void main() {
   group('DateTimeExt.formatDate', () {

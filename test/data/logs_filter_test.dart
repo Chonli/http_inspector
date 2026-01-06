@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http_inspector/src/data/logs_filter.dart';
-import 'package:http_inspector/src/data/network_log.dart';
+import 'package:http_client_inspector/src/data/logs_filter.dart';
+import 'package:http_client_inspector/src/data/network_log.dart';
 
 void main() {
   group('LogsFilterExt', () {

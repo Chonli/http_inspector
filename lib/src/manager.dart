@@ -1,5 +1,5 @@
-import 'package:http_inspector/src/data/config.dart';
-import 'package:http_inspector/src/di/inspector.dart';
+import 'package:http_client_inspector/src/data/config.dart';
+import 'package:http_client_inspector/src/di/inspector.dart';
 
 class InspectorManager {
   InspectorManager._();

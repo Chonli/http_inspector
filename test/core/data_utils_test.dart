@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http_inspector/src/core/data_utils.dart';
+import 'package:http_client_inspector/src/core/data_utils.dart';
 
 void main() {
   test('formats pretty JSON string from String', () {

@@ -5,7 +5,7 @@ import 'dart:math' show Random;
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:http_inspector/http_inspector.dart';
+import 'package:http_client_inspector/http_client_inspector.dart';
 
 void main() {
   InspectorManager.init(config: const InspectorConfig());

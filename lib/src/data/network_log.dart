@@ -1,7 +1,7 @@
 import 'dart:collection';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:http_inspector/src/data/logs_filter.dart';
+import 'package:http_client_inspector/src/data/logs_filter.dart';
 
 part 'network_log.freezed.dart';
 

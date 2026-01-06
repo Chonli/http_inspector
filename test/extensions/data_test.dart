@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http_inspector/src/extensions/data.dart';
+import 'package:http_client_inspector/src/extensions/data.dart';
 
 void main() {
   group('ResponseBodyExt.formatSize', () {
