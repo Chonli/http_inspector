@@ -7,9 +7,9 @@
 `http_client_inspector` is a Flutter package that provides easy logging and inspection of network activity for applications using the [http](https://pub.dev/packages/http) package. It helps developers debug and monitor HTTP requests/responses directly from their apps, providing an in-app inspector panel for real-time network analysis.
 
 <p float="left">
-  <img src="https://github.com/Chonli/http_inspector/blob/main/assets/screenshot/listview.jpg" width="250">
-  <img src="https://github.com/Chonli/http_inspector/blob/main/assets/screenshot/detail_overview.jpg" width="250">
-  <img src="https://github.com/Chonli/http_inspector/blob/main/assets/screenshot/detail_response.jpg" width="250">
+  <img src="https://raw.githubusercontent.com/Chonli/http_inspector/refs/heads/main/assets/screenshot/listview.jpg" width="250">
+  <img src="https://raw.githubusercontent.com/Chonli/http_inspector/refs/heads/main/assets/screenshot/detail_overview.jpg" width="250">
+  <img src="https://raw.githubusercontent.com/Chonli/http_inspector/refs/heads/main/assets/screenshot/detail_response.jpg" width="250">
 </p>
 
 ## Features
